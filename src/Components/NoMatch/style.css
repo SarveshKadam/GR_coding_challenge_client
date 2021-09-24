@@ -1,0 +1,15 @@
+.big-text{
+    height: 25vh;
+    width: 40vw;
+    background-color: #eee ;
+}
+
+h5{
+    text-align: center;
+    font-size: xx-large;
+    background-color: #eee ;
+}
+
+*{
+    background-color: #eee ;
+}

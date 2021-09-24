@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import HomePage from "./Components/HomePage/index";
 import RatingOverlay from "./Components/RatingOverlay/index";
 import NoMatch from './Components/NoMatch/index';
