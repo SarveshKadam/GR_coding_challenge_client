@@ -1,43 +1,89 @@
-import React from "react";
-import data from "../../data.json";
-import { Link } from "react-router-dom";
-
-import './style.css';
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import content from "../../Constants/homepage.json";
+import "./style.css";
+import { useHistory } from "react-router";
 function HomePage() {
+  const [reviewData, setReviewData] = useState();
+  const [finalRate, setFinalRate] = useState(0);
+  let history = useHistory();
+  const { hero_title, add_review, reviews } = content;
+  const fetchData = async () => {
+    try {
+      const response = await Axios.get();
+      setReviewData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(async () => {
+    await fetchData();
+
+    //Final rate calculation
+    let sum = 0;
+    let leng = 0;
+    reviewData &&
+      reviewData.map((value) => {
+        sum = sum + value.rating;
+        leng = leng + 1;
+      });
+    const calc = (sum / leng).toFixed(1);
+    setFinalRate(calc);
+  }, [reviewData]);
+
   return (
-    <div class="homepage">
-      <div class="home-container">
-        <h3 class="home-heading">The Minimalist Entreprenuer</h3>
+    <div className="homepage">
+      <div className="home-container">
+        <h3 className="home-heading">{hero_title}</h3>
         <br />
-        <div class="final-container">
-          <div class="final-child">
-            <span id="final-rate" class="final-rate"></span>
-            <div class="Stars" id="final-star-rate" style={{"--rating": 4.5}}></div>
+        <div className="final-container">
+          <div className="final-child">
+            {finalRate && (
+              <>
+                <span id="final-rate" className="final-rate">
+                  {finalRate}
+                </span>
+                <div
+                  className="Stars"
+                  id="final-star-rate"
+                  style={{ "--rating": finalRate }}
+                ></div>
+              </>
+            )}
           </div>
-          <div class="final-child-btn">
-            <Link to="/ratingoverlay">
+          <div className="final-child-btn">
             <a
-              class="btn"
+              className="btn"
+              onClick={() => {
+                history.push("/ratingoverlay");
+              }}
             >
-              Add Review
+              {add_review}
             </a>
-            </Link>
           </div>
         </div>
-        <hr class="solid-line" />
-        <div class="review-list">
-          <p class="sub-heading">Reviews</p>
+        <hr className="solid-line" />
+        <div className="review-list">
+          <p className="sub-heading">{reviews}</p>
           <div
             id="ratings"
-            class="review-text"
-            style={{"background-color": "#ffffff"}}
+            className="review-text"
+            style={{ backgroundColor: "#ffffff" }}
           >
-              {data.review_data.map((value)=>(
-                  <div className="set">
-                  <span className="Stars" style={{"--rating": value.rating}}></span>
-                  <span><strong>{value.rating}, </strong>{value.review}</span>
+            {reviewData &&
+              reviewData.map((value) => (
+                <div className="set" key={value._id}>
+                  <span
+                    className="Stars"
+                    style={{ "--rating": value.rating }}
+                  ></span>
+                  <span>
+                    <strong>{value.rating}, </strong>
+                    {value.reviewText}
+                  </span>
                   <br />
-                  </div>
+                </div>
               ))}
           </div>
         </div>

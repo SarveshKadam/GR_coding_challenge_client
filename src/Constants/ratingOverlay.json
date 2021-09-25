@@ -1,0 +1,10 @@
+{
+    "hero_title":"What's your rating?",
+    "rating_label":"Rating",
+    "out_of":" out of 5",
+    "enter_rating":"Please enter rating",
+    "review_label":"Review",
+    "enter_review":"Please enter a review",
+    "review_not_submitted":"Review were not submitted",
+    "submit_review":"Submit Review"
+}
