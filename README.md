@@ -3,7 +3,8 @@
 A MERN fullstack application for Star Ratings.
 
 You can view the [Live App](https://gumroad-rating.netlify.app/).
-
+Please find the source code for [backend](https://github.com/SarveshKadam/GR_coding_challenge_server) and [MVP](https://github.com/SarveshKadam/CodingChallenge).
+Also the live URL of [server](https://gumroad-coding-challenge.herokuapp.com/) and [MVP](https://gumroad-codingchallenge-mvp.netlify.app/index.html)
 
 ## Features ⭐
 
@@ -39,7 +40,9 @@ client
 │   └── index.js
 ```
 The file `index.js` which executes when our client side application is ran
-We have a `components` folder for our different components.
+We have a `components` folder for our different components.<br />
+
+Find the server/backend repository [here](https://github.com/SarveshKadam/GR_coding_challenge_server) and the live [URL](https://gumroad-coding-challenge.herokuapp.com/).
 
 ```
 server
